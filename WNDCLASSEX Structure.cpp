@@ -1,18 +1,18 @@
 #include <windows.h>
 
-// À©µµ¿ì Å¬·¡½º : À©µµ¿ìÀÇ ¼Ó¼º °ªÀ» ÀúÀåÇØ µî·ÏÇÏ´Â ±¸Á¶Ã¼, 12°³ÀÇ ÇÊµå·Î ±¸¼º
+// ìœˆë„ìš° í´ëž˜ìŠ¤ : ìœˆë„ìš°ì˜ ì†ì„± ê°’ì„ ì €ìž¥í•´ ë“±ë¡í•˜ëŠ” êµ¬ì¡°ì²´, 12ê°œì˜ í•„ë“œë¡œ êµ¬ì„±
 
 typedef struct _WNDCLASSEX {
-	UINT		cbSize;			// ±¸Á¶Ã¼ Å©±â
-	UINT		style;			// Ãâ·Â ÇüÅÂ
-	WNDPROC		lpfnWndProc;	// ÇÁ·Î½ÃÀú ÇÔ¼ö
-	int		    cbClsExtra;		// Å¬·¡½º ¿©ºÐ ¸Þ¸ð¸®
-	int			cbWndExtra;		// À©µµ¿ì ¿©ºÐ ¸Þ¸ð¸®
-	HANDLE		hInstance;		// À©µµ¿ì ÀÎ½ºÅÏ½º
-	HICON		hIcon;			// ¾ÆÀÌÄÜ
-	HCURSOR		hCursor;		// Ä¿¼­
-	HBRUSH		hbrBackground;	// ¹è°æ »ö
-	LPCTSTR		lpszMenuName;	// ¸Þ´º ÀÌ¸§
-	LPCTSTR		lpszClassName;	// Å¬·¡½º ÀÌ¸§
-	HICON		hIconSm;		// ÀÛÀº ¾ÆÀÌÄÜ
+	UINT		cbSize;			// êµ¬ì¡°ì²´ í¬ê¸°
+	UINT		style;			// ì¶œë ¥ í˜•íƒœ
+	WNDPROC		lpfnWndProc;	// í”„ë¡œì‹œì € í•¨ìˆ˜
+	int		cbClsExtra;		// í´ëž˜ìŠ¤ ì—¬ë¶„ ë©”ëª¨ë¦¬
+	int		cbWndExtra;		// ìœˆë„ìš° ì—¬ë¶„ ë©”ëª¨ë¦¬
+	HANDLE		hInstance;		// ìœˆë„ìš° ì¸ìŠ¤í„´ìŠ¤
+	HICON		hIcon;			// ì•„ì´ì½˜
+	HCURSOR		hCursor;		// ì»¤ì„œ
+	HBRUSH		hbrBackground;	// ë°°ê²½ ìƒ‰
+	LPCTSTR		lpszMenuName;	// ë©”ë‰´ ì´ë¦„
+	LPCTSTR		lpszClassName;	// í´ëž˜ìŠ¤ ì´ë¦„
+	HICON		hIconSm;		// ìž‘ì€ ì•„ì´ì½˜
 } WNDCLASSEX;
