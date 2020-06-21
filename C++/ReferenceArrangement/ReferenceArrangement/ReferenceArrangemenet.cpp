@@ -38,7 +38,7 @@ int main()
 }
 #endif // false
 
-#if true
+#if false
 // 함수 인자로 레퍼런스 받기
 int change_val(int& p)
 {
@@ -57,4 +57,28 @@ int main()
 	change_val(number);
 	std::cout << number << std::endl;
 }
+#endif // true
+
+// 여러가지 참조자 예시
+#if true
+int main()
+{
+	int x;
+	int& y = x;
+	int& z = y;
+
+	// x, 참조자 y, 참조자 z 의 값은 1로 동일하다.
+	// 그 이유는, y와 z가 x의 참조자이므로 x의 값을 변경하는 것이나 y or z의 값을 변경하는 것과 같기 때문이다.
+	x = 1;
+	std::cout << "x : " << x << " y :" << y << " z : " << z << std::endl;
+
+	// 위와 동일하게 값이 변하는 것으로 작동한다.
+	y = 2;
+	std::cout << "x : " << x << " y :" << y << " z : " << z << std::endl;
+	
+	// 위와 동일하게 값이 변하는 것으로 작동한다.
+	z = 3;
+	std::cout << "x : " << x << " y :" << y << " z : " << z << std::endl;
+}
+
 #endif // true
