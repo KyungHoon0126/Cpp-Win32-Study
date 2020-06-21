@@ -144,7 +144,7 @@ int main()
 }
 #endif // false
 
-#if true
+#if false
 // 지역변수의 레퍼런스 리턴
 int& function() 
 {
@@ -166,6 +166,45 @@ int main()
 	// Dangling의 원래 뜻 : 달랑달랑, 레퍼런스가 참조해야 할 변수가 사라져서 혼자서 덩그러니 남아 있는 상황과 유사하다.
 
 	b = 3;
+	return 0;
+}
+#endif // false
+
+// 외부 변수의 레퍼런스를 리턴
+#if false
+int& function(int& a)
+{
+	int a = 5;
+	return a;
+}
+
+int main()
+{
+	int b = 2;
+	int c = function(b);
+	return 0;
+}
+#endif // true
+
+// 참조자가 아닌 값을 리턴하는 함수를 참조자로 받기
+#if true
+int function()
+{
+	int a = 5;
+	return a;
+}
+
+int main()
+{
+	// int& c = function(); => Dangling Reference
+
+	// 원칙상 함수의 리턴값은 해당 문장이 끝나면 소멸되는 것이 정상이다.
+	// 따라서 기존에 int& 로 받았을 때에는 컴파일 자체가 안되었습니다.
+	// 하지만 예외적으로 상수 레퍼런스로 리턴값을 받게 되면 해당 리턴값의
+	// 생명이 연장됩니다.그리고 그 연장되는 기간은 레퍼런스가 사라질 때 까지 입니다.
+	const int& c = function();
+	std::cout << "c : " << c << std::endl;
+
 	return 0;
 }
 #endif // true
