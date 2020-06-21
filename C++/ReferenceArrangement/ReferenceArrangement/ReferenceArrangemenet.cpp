@@ -102,7 +102,7 @@ int main()
 #endif // false
 
 // 레퍼런스의 배열과 배열의 레퍼런스
-#if true
+#if false
 int main()
 {
 	// 레퍼런스의 배열은 불법이라고 나와있다.
@@ -126,5 +126,46 @@ int main()
 
 	int arr2[3][2] = { 1, 2, 3, 4, 5, 6 };
 	int(&ref)[3][2] = arr2;
+}
+#endif // false
+
+// 레퍼런스를 리턴하는 함수
+#if false
+int function()
+{
+	int a = 2;
+	return a;
+}
+
+int main()
+{
+	int b = function();
+	return 0;
+}
+#endif // false
+
+#if true
+// 지역변수의 레퍼런스 리턴
+int& function() 
+{
+	int a = 2;
+	return a;
+}
+
+int main() 
+{
+	// function의 리턴타입은 int& 이다. 따라서 참조자를 리턴하게 된다.
+	// 그러나 문제는 리턴하는 function 안에 정의되어 있는 a는 함수의 리턴과 함께 사라진다.
+	int b = function();
+
+	// 즉
+	// int& ref = a;
+	// a 가 사라짐
+	//int b = ref;
+	// 와 같다. 레퍼런스는 있는데 원래 참조 하던 것이 사라진 레퍼런스를 댕글링 레퍼런스(Dangling Reference)라고 부른다.
+	// Dangling의 원래 뜻 : 달랑달랑, 레퍼런스가 참조해야 할 변수가 사라져서 혼자서 덩그러니 남아 있는 상황과 유사하다.
+
+	b = 3;
+	return 0;
 }
 #endif // true
