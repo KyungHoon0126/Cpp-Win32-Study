@@ -81,7 +81,7 @@ int main()
 	cout << "2. 나이" << endl;
 	cout << "3. 성별" << endl;
 	cin >> user_input2;
-
+		
 	switch (user_input2) 
 	{
 		case 1:
