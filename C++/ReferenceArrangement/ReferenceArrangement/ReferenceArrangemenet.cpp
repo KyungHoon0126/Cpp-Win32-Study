@@ -60,7 +60,7 @@ int main()
 #endif // true
 
 // 여러가지 참조자 예시
-#if false
+#if true
 int main()
 {
 	int x;
@@ -81,22 +81,4 @@ int main()
 	std::cout << "x : " << x << " y :" << y << " z : " << z << std::endl;
 }
 
-#endif // false
-
-// 상수에 대한 참조자
-#if true
-int main()
-{
-	// 상수 값 자체는 리터럴 이기 때문에 참조 불가
-	// int& ref = 4;
-
-	// std::cout << ref << std::endl;
-
-	// 상수 참조자로 선언한다면 리터럴도 참조 가능
-	const int& ref = 4;
-
-	int a = ref; // a = 4;
-
-	 std::cout << ref << std::endl;
-}
 #endif // true
