@@ -15,7 +15,7 @@ typedef struct Animal
     int health;  // 체력
     int food;    // 배부름
     int clean;   // 깨끗함
-} Animal;
+} Animal; // struct Animal을 Animal로 사용
 
 // 동물 생성
 void create_animal(Animal* animal)
