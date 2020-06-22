@@ -44,7 +44,3 @@ int main()
 	return 0;
 }
 #endif // false
-
-#if true
-
-#endif // true
