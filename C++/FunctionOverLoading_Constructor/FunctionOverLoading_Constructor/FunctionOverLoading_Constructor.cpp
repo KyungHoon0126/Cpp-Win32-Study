@@ -28,7 +28,7 @@ int main()
 }
 #endif // false
 
-#if true
+#if false
 void print(int x)
 {
 	std::cout << "int : " << x << std::endl;
@@ -49,7 +49,7 @@ int main()
 	print(b);
 	print(c);
 }
-#endif // true
+#endif // false
 
 #pragma region C++ 오버로딩 규칙
 // 1 단계 : 자신과 타입이 정확히 일치하는 함수를 찾는다.
@@ -76,3 +76,117 @@ int main()
 // 오류를 발생하게 됩니다.
 #pragma endregion
 
+#pragma region Date Class(Date 클래스)
+// Q : SetDate 는 말그대로 Date 함수 내부를 초기화 하는 것이고
+//	   AddDay, AddMonth, AddYear 는 일, 월, 년을 원하는 만큼 더하게 된다.
+//	   한 가지 주의할 점은 만일 2012 년 2 월 28 일에 3 일을 더하면 
+//     2012 년 2 월 31 일이 되는 것이 아니라 2012 년 3 월 2 일이 된다.
+
+#if true
+class Date
+{
+	int year;
+	int month; // 1부터 12까지
+	int day; // 1부터 31까지
+
+public:
+	void SetDate(int year, int month, int date);
+	void AddDay(int inc);
+	void AddMonth(int inc);
+	void AddYear(int inc);
+
+	// 해당 월의 총 일 수를 구한다.
+	int GetCurrentMonthTotalDays(int year, int month);
+
+	void ShowDate();
+};
+
+void Date::SetDate(int year, int month, int day)
+{
+	this->year = year;
+	this->month = month;
+	this->day = day;
+}
+
+int Date::GetCurrentMonthTotalDays(int year, int month)
+{
+	static int month_day[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+	if (month != 2)
+	{
+		return month_day[month - 1];
+	}
+	else if (year % 4 == 0 && year % 100 != 0)
+	{
+		return 29; // 윤년
+	}
+	else
+	{
+		return 28;
+	}
+}
+
+void Date::AddDay(int inc)
+{
+	while (true)
+	{
+		// 현재 달의 총 일 수
+		int currnet_month_total_days = GetCurrentMonthTotalDays(year, month);
+
+		// 같은 달 안에 들어온다면
+		if (day + inc <= currnet_month_total_days)
+		{
+			day += inc;
+			return;
+		}
+		else
+		{
+			// 다음달로 넘어가야 한다.
+			inc -= (currnet_month_total_days - day + 1);
+			day = 1;
+			AddMonth(1);
+		}
+	}
+}
+
+void Date::AddMonth(int inc)
+{
+	AddYear((inc + month - 1) / 12);
+	month = month + inc % 12;
+	month = (month == 12 ? 12 : month % 12);
+}
+
+void Date::AddYear(int inc)
+{
+	year += inc;
+}
+
+void Date::ShowDate()
+{
+	std::cout << "오늘은 " << year << "년" << month << "월" << day << "일 입니다." << std::endl;
+}
+
+int main()
+{
+	Date day;
+	day.SetDate(2011, 3, 1);
+	day.ShowDate();
+
+	day.AddDay(30);
+	day.ShowDate();
+
+	day.AddDay(2000);
+	day.ShowDate();
+
+	day.SetDate(2012, 1, 31); // 윤년
+	day.AddDay(29);
+	day.ShowDate();
+
+	day.SetDate(2012, 8, 4);
+	day.AddDay(2500);
+	day.ShowDate();
+
+	return 0;
+}
+#endif // true
+#pragma endregion
