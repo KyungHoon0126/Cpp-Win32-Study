@@ -82,13 +82,15 @@ int main()
 //	   한 가지 주의할 점은 만일 2012 년 2 월 28 일에 3 일을 더하면 
 //     2012 년 2 월 31 일이 되는 것이 아니라 2012 년 3 월 2 일이 된다.
 
-#if true
+#if false 
+// Date:: 를 함수 이름 앞에 붙여주게 되면 이 함수가 "Date 클래스의 정의된 함수"라는 의미
+// Date:: 가 없으면 클래스의 멤버 함수가 아니라 그냥 일반적인 함수가 된다.
 class Date
 {
 	int year;
 	int month; // 1부터 12까지
 	int day; // 1부터 31까지
-
+	
 public:
 	void SetDate(int year, int month, int date);
 	void AddDay(int inc);
@@ -188,5 +190,5 @@ int main()
 
 	return 0;
 }
-#endif // true
+#endif // false
 #pragma endregion
